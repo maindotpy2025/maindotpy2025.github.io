@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Main.py?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        body.dark {
+            background-color: #333;
+            color: #fff;
+        }
+        header {
+            background-color: #3ba60d;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero.dark {
+            background-color: #333;
+            color: #000;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #4682b4;
+        }
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <header>
+        <h1>NO MORE MAIN.PY!</h1>
+        <p>HELP REMOVE MAIN.PY FOREVER!</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/files">Files</a>
+        <a href="/about">About</a>
+    </nav>
+
+    <section class="hero">
+        <h1>DOWNLOAD PYTHON FILES!</h1>
+        <p>Files handmade!</p>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <h3>Files</h3>
+            <p>The Files.</p>
+            <a href="/files">Explore</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025. All rights reserved.
+    </footer>
+
+    <script>
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+        }
+
+        function getCookie(name) {
+            return document.cookie.split('; ').reduce((r, v) => {
+                const parts = v.split('=');
+                return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+            }, '');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            const isDarkMode = document.body.classList.contains('dark');
+            setCookie('darkMode', isDarkMode, 30); // Save preference for 30 days
+        }
+
+        function applyDarkModePreference() {
+            const darkModeCookie = getCookie('darkMode');
+            if (darkModeCookie === 'true') {
+                document.body.classList.add('dark');
+            }
+        }
+
+        // Apply the saved preference on page load
+        applyDarkModePreference();
+    </script>
+
+</body>
+</html>
